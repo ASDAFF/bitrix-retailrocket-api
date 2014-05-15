@@ -58,6 +58,7 @@ abstract class WidgetAbstract implements WidgetInterface
 
 		$curl = curl_init($this->requestUrl);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_NOSIGNAL, 1);
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, 250);
 		$response = curl_exec($curl);
 		curl_close($curl);
