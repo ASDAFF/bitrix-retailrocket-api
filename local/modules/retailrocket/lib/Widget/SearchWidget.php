@@ -15,6 +15,6 @@ class SearchWidget extends WidgetAbstract
 	 */
 	public function getBaseRequestUrl()
 	{
-		return parent::getBaseRequestUrl() . '?rrUserId=';
+		return parent::getBaseRequestUrl() . '?keyword=';
 	}
 }
