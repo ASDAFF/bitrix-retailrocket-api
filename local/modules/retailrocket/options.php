@@ -5,7 +5,7 @@
  * @var string $mid
  */
 
-if (!$USER->IsAdmin()) return;
+if (($moduleRight = $APPLICATION->GetGroupRight(\RetailRocket\Config::MODULE_ID)) < 'R') return;
 
 \Bitrix\Main\Localization\Loc::loadMessages($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/options.php');
 \Bitrix\Main\Localization\Loc::loadMessages(__FILE__);
@@ -19,6 +19,12 @@ $aTabs = array(
 		'ICON' => 'ib_settings',
 		'TITLE' => GetMessage('MAIN_TAB_TITLE_SET')
 	),
+	array(
+		'DIV' => 'edit2',
+		'TAB' => GetMessage('MAIN_TAB_RIGHTS'),
+		'ICON' => 'ib_settings',
+		'TITLE' => GetMessage('MAIN_TAB_TITLE_RIGHTS')
+	),
 );
 $tabControl = new CAdminTabControl('tabControl', $aTabs);
 
@@ -27,6 +33,7 @@ if ($_POST && check_bitrix_sessid()) {
 		\RetailRocket\Config::setPartnerId($_POST['option_partner_id']);
 	}
 }
+
 $tabControl->Begin();
 ?>
 <form method='post' action='<?php echo $APPLICATION->GetCurPage() ?>?mid=<?php echo $mid ?>&amp;lang=<?php echo LANGUAGE_ID ?>'>
@@ -42,6 +49,9 @@ $tabControl->Begin();
 			<input name='option_partner_id' value="<?php echo \RetailRocket\Config::getPartnerId() ?>" style="width: 40%"/>
 		</td>
 	</tr>
+
+	<?php $tabControl->BeginNextTab();
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/admin/group_rights.php'); ?>
 
 	<?php $tabControl->Buttons(); ?>
 	<input type='submit' name='Update' value='<?php echo GetMessage('MAIN_SAVE') ?>'
