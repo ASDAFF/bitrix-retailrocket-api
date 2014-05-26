@@ -170,7 +170,7 @@ final class TrackingCode
 		return sprintf(
 			"<script type='text/javascript'>
 				try {
-					rrApi.recomTrack('%s', %s, [%s]);
+					rrApi.recomTrack('%s', '%s', [%s]);
 				} catch(e) {}
 			</script>",
 			$widget->getType(),
