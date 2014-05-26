@@ -29,7 +29,7 @@ final class TrackingCode
 					apiJs = d.createElement('script');
 					apiJs.id = apiJsId;
 					apiJs.async = true;
-					apiJs.src = '//cdn.retailrocket.ru/content/javascript/api.js';
+					apiJs.src = '//cdn.retailrocket.ru/content/javascript/tracking.js';
 					ref.parentNode.insertBefore(apiJs, ref);
 				}(document));
 			</script>",
